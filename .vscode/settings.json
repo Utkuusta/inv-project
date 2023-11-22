@@ -1,0 +1,19 @@
+{
+	"INVENTRON": {
+		/* Target Device Settings */
+		"TARGET_IP":"192.168.10.100",
+
+		/* Project Settings */
+		"PROGRAM":"hello.bin",
+
+		/* Yocto SDK Configuration */
+		"ARCH":"arm-poky-linux-gnueabi",
+                "OECORE_NATIVE_SYSROOT":"/home/utku/SDK/sysroots/x86_64-pokysdk-linux",
+                "SDKTARGETSYSROOT": "/home/utku/SDK/sysroots/cortexa7t2hf-neon-poky-linux-gnueabi",
+
+		/* Yocto SDK Constants */
+                "CC_PREFIX": "${config:INVENTRON.OECORE_NATIVE_SYSROOT}/usr/bin/${config:INVENTRON.ARCH}/${config:INVENTRON.ARCH}-",
+		"CXX": "${config:INVENTRON.CC_PREFIX}g++ --sysroot=${config:INVENTRON.SDKTARGETSYSROOT}",
+		"CC": "${config:INVENTRON.CC_PREFIX}gcc --sysroot=${config:INVENTRON.SDKTARGETSYSROOT}",
+	}
+}

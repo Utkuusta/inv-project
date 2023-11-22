@@ -1,0 +1,48 @@
+{
+"version": "2.0.0",
+/* Configure Yocto SDK Constants from settings.json */
+"options": {
+    "env": {
+        "CXX": "${config:INVENTRON.CXX}",         /* Used by Makefile */
+        "CC": "${config:INVENTRON.CC}",           /* Used by Makefile */
+    }
+ },
+ /* Configure integrated VS Code Terminal */
+ "presentation": {
+    "echo": false,
+    "reveal": "always",
+    "focus": true,
+    "panel": "dedicated",
+    "showReuseMessage": true,
+},
+"tasks": [
+    /* Configure launch.json (debug) preLaunchTask Task */
+        {
+            "label": "inv-deploy-gdb",
+            "isBackground": true,
+            "problemMatcher":{
+                "base": "$gcc",
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern":  "Deploying to target",
+                    "endsPattern":  "Starting GDB Server on Target"
+                }
+            },
+            "type": "shell",
+            "command": "sh",
+            "args": [
+                "inv-deploy-gdb.sh",
+                "${config:INVENTRON.TARGET_IP}",
+                "${config:INVENTRON.PROGRAM}"
+            ],
+            "dependsOn": ["build"],
+        },
+    /* Configure Build Task */
+    {
+        "label": "build",
+        "type": "shell",
+        "command": "make clean; . /home/utku/SDK/environment-setup-cortexa7t2hf-neon-poky-linux-gnueabi; make -j$(nproc)",
+        "problemMatcher": ["$gcc"]
+    },
+]
+}

@@ -1,5 +1,5 @@
 #!/bin/bash
-readonly TARGET_IP="192.168.10.101"
+readonly TARGET_IP="192.168.10.100"
 readonly PROGRAM="hello.bin"
 readonly TARGET_DIR="/home/root"
 readonly SCRIPTS="scripts/"
